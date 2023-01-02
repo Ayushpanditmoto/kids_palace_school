@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kids/Pages/welcome_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kids/enum_route.dart';
 import 'package:provider/provider.dart';
 
 import 'Provider/ThemeProvider.dart';
@@ -55,7 +56,7 @@ class MyApp extends StatelessWidget {
             // home: const Home(),
             // home: const WelcomeSecondScreen(),
             home: const WelcomeScreen(),
-            initialRoute: "/",
+            initialRoute: RoutePaths.welcomeScreen,
             onGenerateRoute: MyRouter.generateRoute,
           );
         },

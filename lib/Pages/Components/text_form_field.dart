@@ -15,7 +15,7 @@ class TextEnterArea extends StatelessWidget {
         height: 60,
         width: MediaQuery.of(context).size.width - 20,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: const Color.fromARGB(87, 134, 134, 134),
           borderRadius: BorderRadius.circular(10),
         ),
         child: TextFormField(

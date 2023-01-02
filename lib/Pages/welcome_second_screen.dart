@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:kids/enum_route.dart';
 
 class WelcomeSecondScreen extends StatelessWidget {
   const WelcomeSecondScreen({super.key});
@@ -49,7 +50,7 @@ class WelcomeSecondScreen extends StatelessWidget {
               // bottom: 250,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/login_student');
+                  Navigator.pushNamed(context, RoutePaths.loginStudent);
                 },
                 child: Container(
                   height: 170,
@@ -104,7 +105,7 @@ class WelcomeSecondScreen extends StatelessWidget {
               // bottom: 250,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/login_teacher');
+                  Navigator.pushNamed(context, RoutePaths.loginTeacher);
                 },
                 child: Container(
                   height: 170,
@@ -159,7 +160,7 @@ class WelcomeSecondScreen extends StatelessWidget {
               // bottom: 250,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/login_teacher');
+                  Navigator.pushNamed(context, RoutePaths.loginTeacher);
                 },
                 child: Container(
                   height: 100,
@@ -179,7 +180,7 @@ class WelcomeSecondScreen extends StatelessWidget {
                   ),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/login_admin');
+                      Navigator.pushNamed(context, RoutePaths.onlineAdmission);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 0, 184, 120),
