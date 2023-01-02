@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'Pages/Home.dart';
+import 'package:flutter/services.dart';
+import 'package:kids/Pages/welcome_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'Provider/ThemeProvider.dart';
@@ -16,6 +17,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.light,
+      systemNavigationBarColor: Color.fromARGB(255, 0, 0, 0),
+      systemNavigationBarIconBrightness: Brightness.dark,
+    ));
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
@@ -24,19 +32,29 @@ class MyApp extends StatelessWidget {
         builder: (BuildContext context) {
           final themeProvider = Provider.of<ThemeProvider>(context);
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: 'Kids App',
             themeMode: themeProvider.themeMode,
             theme: ThemeData(
-              primarySwatch: Colors.amber,
-            ),
-            darkTheme: ThemeData(
-              primarySwatch: Colors.blue,
+              fontFamily: GoogleFonts.poppins().fontFamily,
+              primaryColor: const Color(0xFF202328),
+              backgroundColor: const Color.fromARGB(255, 30, 30, 30),
               brightness: Brightness.dark,
               appBarTheme: const AppBarTheme(
-                color: Colors.purple,
+                color: Color.fromARGB(255, 16, 255, 171),
               ),
             ),
-            home: const Home(),
+            // darkTheme: ThemeData(
+            //   primaryColor: const Color(0xFF202328),
+            //   backgroundColor: const Color(0xFF12171D),
+            //   brightness: Brightness.dark,
+            //   appBarTheme: const AppBarTheme(
+            //     color: Colors.purple,
+            //   ),
+            // ),
+            // home: const Home(),
+            // home: const WelcomeSecondScreen(),
+            home: const WelcomeScreen(),
             initialRoute: "/",
             onGenerateRoute: MyRouter.generateRoute,
           );

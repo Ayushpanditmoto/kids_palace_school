@@ -15,13 +15,16 @@ class HomeCard extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Image(
-              height: 150,
-              image: AssetImage(image!),
+            Expanded(
+              child: Image(
+                height: 150,
+                image: AssetImage(image!),
+              ),
             ),
             const Divider(
               height: 6,
               thickness: 0,
+              color: Colors.transparent,
             ),
             Text(title!),
           ],
