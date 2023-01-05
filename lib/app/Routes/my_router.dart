@@ -7,8 +7,8 @@ import 'package:kids/Pages/teacher_dashboard.dart';
 import 'package:kids/Pages/welcome_screen.dart';
 import 'package:kids/Pages/welcome_second_screen.dart';
 
-import 'Pages/Home.dart';
-import 'enum_route.dart';
+import '../../Pages/Home.dart';
+import 'app.route.dart';
 
 class MyRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {

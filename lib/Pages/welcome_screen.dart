@@ -6,7 +6,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 40, 255, 205),
+      backgroundColor: const Color.fromARGB(255, 29, 211, 168),
       body: Stack(children: <Widget>[
         Container(
           height: MediaQuery.of(context).size.height - 100,
@@ -51,7 +51,7 @@ class WelcomeScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 16, 255, 171),
+                    color: Color.fromARGB(255, 22, 194, 134),
                   ),
                 ),
                 const SizedBox(
@@ -61,7 +61,7 @@ class WelcomeScreen extends StatelessWidget {
                   'School',
                   style: TextStyle(
                     fontSize: 20,
-                    color: Color.fromARGB(145, 16, 255, 171),
+                    color: Color.fromARGB(145, 47, 255, 182),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -90,7 +90,7 @@ class WelcomeScreen extends StatelessWidget {
                     Navigator.pushNamed(context, '/second');
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 16, 255, 171),
+                    backgroundColor: const Color.fromARGB(179, 0, 197, 128),
                     foregroundColor: Colors.white,
                     fixedSize: const Size(200, 50),
                     shape: const RoundedRectangleBorder(

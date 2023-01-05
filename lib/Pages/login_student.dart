@@ -1,8 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:kids/Core/Services/auth.service.dart';
 import 'package:kids/Pages/Components/text_form_field.dart';
+import 'package:kids/app/Routes/app.route.dart';
+import 'package:kids/app/credentials/supabase.credentials.dart';
 
-class LoginStudent extends StatelessWidget {
+class LoginStudent extends StatefulWidget {
   const LoginStudent({super.key});
+
+  @override
+  State<LoginStudent> createState() => _LoginStudentState();
+}
+
+class _LoginStudentState extends State<LoginStudent> {
+  TextEditingController mobileC = TextEditingController();
+  TextEditingController passwordC = TextEditingController();
+
+  @override
+  void initState() {
+    mobileC = TextEditingController();
+    passwordC = TextEditingController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,14 +82,16 @@ class LoginStudent extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
-                        const TextEnterArea(
+                        TextEnterArea(
+                          controller: mobileC,
                           hintText: 'Enter your Mobile Number',
                           labelText: 'Mobile Number',
                         ),
                         const SizedBox(
                           height: 5,
                         ),
-                        const TextEnterArea(
+                        TextEnterArea(
+                          controller: passwordC,
                           hintText: 'Enter your Password',
                           labelText: 'Password',
                         ),
@@ -79,7 +99,14 @@ class LoginStudent extends StatelessWidget {
                           height: 20,
                         ),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            await AuthenticationService().login(
+                              email: mobileC.text,
+                              password: passwordC.text,
+                            );
+
+                            // Navigator.pushNamed(context, RoutePaths.home);
+                          },
                           style: ElevatedButton.styleFrom(
                             fixedSize: const Size(200, 50),
                             backgroundColor:

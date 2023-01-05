@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 class TextEnterArea extends StatelessWidget {
   final String hintText;
   final String labelText;
+  final TextEditingController controller;
 
   const TextEnterArea(
-      {super.key, required this.hintText, required this.labelText});
+      {super.key,
+      required this.hintText,
+      required this.labelText,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +23,7 @@ class TextEnterArea extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: TextFormField(
+          controller: controller,
           decoration: InputDecoration(
             labelStyle: const TextStyle(
               color: Colors.black,

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kids/Pages/welcome_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kids/enum_route.dart';
+import 'package:kids/app/Provider/app.providers.dart';
+import 'package:kids/app/Routes/app.route.dart';
 import 'package:provider/provider.dart';
 
-import 'Provider/ThemeProvider.dart';
-import 'my_router.dart';
+import 'Core/Notifiers/theme_notifier.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,9 +25,7 @@ class MyApp extends StatelessWidget {
     ));
 
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => ThemeProvider()),
-      ],
+      providers: AppProviders.providers,
       child: Builder(
         builder: (BuildContext context) {
           final themeProvider = Provider.of<ThemeProvider>(context);
@@ -45,19 +42,9 @@ class MyApp extends StatelessWidget {
                 color: Color.fromARGB(255, 16, 255, 171),
               ),
             ),
-            // darkTheme: ThemeData(
-            //   primaryColor: const Color(0xFF202328),
-            //   backgroundColor: const Color(0xFF12171D),
-            //   brightness: Brightness.dark,
-            //   appBarTheme: const AppBarTheme(
-            //     color: Colors.purple,
-            //   ),
-            // ),
-            // home: const Home(),
-            // home: const WelcomeSecondScreen(),
-            home: const WelcomeScreen(),
+            // home: const WelcomeScreen(),
             initialRoute: RoutePaths.welcomeScreen,
-            onGenerateRoute: MyRouter.generateRoute,
+            onGenerateRoute: RoutePaths.generateRoute,
           );
         },
       ),

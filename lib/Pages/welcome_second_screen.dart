@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:kids/enum_route.dart';
+import 'package:kids/app/Routes/app.route.dart';
 
 class WelcomeSecondScreen extends StatelessWidget {
   const WelcomeSecondScreen({super.key});

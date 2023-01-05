@@ -9,6 +9,16 @@ class LoginTeacher extends StatefulWidget {
 }
 
 class _LoginTeacherState extends State<LoginTeacher> {
+  TextEditingController mobileC = TextEditingController();
+  TextEditingController passwordC = TextEditingController();
+
+  @override
+  void initState() {
+    mobileC = TextEditingController();
+    passwordC = TextEditingController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,14 +79,16 @@ class _LoginTeacherState extends State<LoginTeacher> {
                         const SizedBox(
                           height: 20,
                         ),
-                        const TextEnterArea(
+                        TextEnterArea(
+                          controller: mobileC,
                           hintText: 'Enter your Mobile Number',
                           labelText: 'Mobile Number',
                         ),
                         const SizedBox(
                           height: 5,
                         ),
-                        const TextEnterArea(
+                        TextEnterArea(
+                          controller: passwordC,
                           hintText: 'Enter your Password',
                           labelText: 'Password',
                         ),

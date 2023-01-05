@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:kids/Pages/Components/text_form_field.dart';
 
-class OnlineAdmission extends StatelessWidget {
+class OnlineAdmission extends StatefulWidget {
   const OnlineAdmission({super.key});
 
+  @override
+  State<OnlineAdmission> createState() => _OnlineAdmissionState();
+}
+
+class _OnlineAdmissionState extends State<OnlineAdmission> {
+  TextEditingController nameC = TextEditingController();
+  TextEditingController emailC = TextEditingController();
+  TextEditingController mobileC = TextEditingController();
+  TextEditingController addressC = TextEditingController();
+  TextEditingController dobC = TextEditingController();
+  TextEditingController genderC = TextEditingController();
+  TextEditingController guardianC = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,27 +73,33 @@ class OnlineAdmission extends StatelessWidget {
                               color: Color.fromARGB(255, 16, 255, 171),
                               fontWeight: FontWeight.bold,
                             )),
-                        const TextEnterArea(
+                        TextEnterArea(
+                          controller: nameC,
                           hintText: 'Enter your Full Name',
                           labelText: 'Name',
                         ),
-                        const TextEnterArea(
+                        TextEnterArea(
+                          controller: emailC,
                           hintText: 'Enter your email',
                           labelText: 'Email',
                         ),
-                        const TextEnterArea(
+                        TextEnterArea(
+                          controller: guardianC,
                           hintText: 'Enter your Guardian Name',
                           labelText: 'Guardian Name',
                         ),
-                        const TextEnterArea(
+                        TextEnterArea(
+                          controller: mobileC,
                           hintText: 'Enter your Phone Number',
                           labelText: 'Phone',
                         ),
-                        const TextEnterArea(
+                        TextEnterArea(
+                          controller: addressC,
                           hintText: 'Enter your Address',
                           labelText: 'Address',
                         ),
-                        const TextEnterArea(
+                        TextEnterArea(
+                          controller: dobC,
                           hintText: 'Enter your Date of Birth',
                           labelText: 'Date of Birth',
                         ),

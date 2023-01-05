@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../Provider/ThemeProvider.dart';
+import '../Core/Notifiers/theme_notifier.dart';
 import 'Components/home_components.dart';
 
 class Home extends StatelessWidget {
