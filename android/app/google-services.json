@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "744989929665",
+    "project_id": "kidspalace-b8967",
+    "storage_bucket": "kidspalace-b8967.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744989929665:android:27b6105a43b15f44866440",
+        "android_client_info": {
+          "package_name": "com.example.kids"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744989929665-cuistea0ikne71unk8t24rj6vm1c12al.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCr8zyZVfFEQJFZ6HK2pargD3HBfzJGJi8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744989929665-cuistea0ikne71unk8t24rj6vm1c12al.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

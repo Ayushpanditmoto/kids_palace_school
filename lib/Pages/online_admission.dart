@@ -20,7 +20,8 @@ class _OnlineAdmissionState extends State<OnlineAdmission> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 40, 255, 205),
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset:
+          false, // it will not resize when keyboard appear
       body: SingleChildScrollView(
         child: Stack(children: <Widget>[
           Container(
@@ -77,37 +78,53 @@ class _OnlineAdmissionState extends State<OnlineAdmission> {
                           controller: nameC,
                           hintText: 'Enter your Full Name',
                           labelText: 'Name',
+                          prefixIcon: const Icon(Icons.person),
                         ),
                         TextEnterArea(
                           controller: emailC,
                           hintText: 'Enter your email',
                           labelText: 'Email',
+                          prefixIcon: const Icon(Icons.email),
                         ),
                         TextEnterArea(
                           controller: guardianC,
                           hintText: 'Enter your Guardian Name',
                           labelText: 'Guardian Name',
+                          prefixIcon: const Icon(Icons.person),
                         ),
                         TextEnterArea(
                           controller: mobileC,
                           hintText: 'Enter your Phone Number',
                           labelText: 'Phone',
+                          prefixIcon: const Icon(Icons.phone),
                         ),
                         TextEnterArea(
                           controller: addressC,
                           hintText: 'Enter your Address',
                           labelText: 'Address',
+                          prefixIcon: const Icon(Icons.location_on),
                         ),
                         TextEnterArea(
                           controller: dobC,
                           hintText: 'Enter your Date of Birth',
                           labelText: 'Date of Birth',
+                          prefixIcon: const Icon(Icons.calendar_today),
                         ),
                         const SizedBox(
                           height: 20,
                         ),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Map<String, dynamic> data = {
+                              'name': nameC.text,
+                              'email': emailC.text,
+                              'guardian': guardianC.text,
+                              'mobile': mobileC.text,
+                              'address': addressC.text,
+                              'dob': dobC.text,
+                            };
+                            print(data);
+                          },
                           style: ElevatedButton.styleFrom(
                             fixedSize: const Size(200, 50),
                             backgroundColor:

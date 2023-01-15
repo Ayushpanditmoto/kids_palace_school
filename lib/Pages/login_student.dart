@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kids/Core/Services/auth.service.dart';
 import 'package:kids/Pages/Components/text_form_field.dart';
-import 'package:kids/app/Routes/app.route.dart';
-import 'package:kids/app/credentials/supabase.credentials.dart';
 
 class LoginStudent extends StatefulWidget {
   const LoginStudent({super.key});
@@ -14,6 +11,7 @@ class LoginStudent extends StatefulWidget {
 class _LoginStudentState extends State<LoginStudent> {
   TextEditingController mobileC = TextEditingController();
   TextEditingController passwordC = TextEditingController();
+  bool isPasswordVisible = true;
 
   @override
   void initState() {
@@ -84,28 +82,51 @@ class _LoginStudentState extends State<LoginStudent> {
                         ),
                         TextEnterArea(
                           controller: mobileC,
+                          keyboardType: TextInputType.number,
                           hintText: 'Enter your Mobile Number',
                           labelText: 'Mobile Number',
+                          prefixIcon: Icon(
+                            Icons.phone,
+                            color: Theme.of(context).primaryColorDark,
+                          ),
                         ),
                         const SizedBox(
                           height: 5,
                         ),
                         TextEnterArea(
                           controller: passwordC,
+                          obscureText:
+                              isPasswordVisible == false ? true : false,
                           hintText: 'Enter your Password',
                           labelText: 'Password',
+                          prefixIcon: Icon(
+                            Icons.lock,
+                            color: Theme.of(context).primaryColorDark,
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              isPasswordVisible == false
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Theme.of(context).primaryColorDark,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                isPasswordVisible = !isPasswordVisible;
+                              });
+                            },
+                          ),
                         ),
                         const SizedBox(
                           height: 20,
                         ),
                         ElevatedButton(
                           onPressed: () async {
-                            await AuthenticationService().login(
-                              email: mobileC.text,
-                              password: passwordC.text,
-                            );
-
-                            // Navigator.pushNamed(context, RoutePaths.home);
+                            Map<String, dynamic> data = {
+                              'mobile': mobileC.text,
+                              'password': passwordC.text,
+                            };
+                            print(data);
                           },
                           style: ElevatedButton.styleFrom(
                             fixedSize: const Size(200, 50),

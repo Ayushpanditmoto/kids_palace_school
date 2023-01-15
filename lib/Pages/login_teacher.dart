@@ -11,6 +11,7 @@ class LoginTeacher extends StatefulWidget {
 class _LoginTeacherState extends State<LoginTeacher> {
   TextEditingController mobileC = TextEditingController();
   TextEditingController passwordC = TextEditingController();
+  bool isPasswordVisible = true;
 
   @override
   void initState() {
@@ -83,20 +84,49 @@ class _LoginTeacherState extends State<LoginTeacher> {
                           controller: mobileC,
                           hintText: 'Enter your Mobile Number',
                           labelText: 'Mobile Number',
+                          prefixIcon: Icon(
+                            Icons.phone,
+                            color: Theme.of(context).primaryColorDark,
+                          ),
                         ),
                         const SizedBox(
                           height: 5,
                         ),
                         TextEnterArea(
                           controller: passwordC,
+                          obscureText:
+                              isPasswordVisible == false ? true : false,
                           hintText: 'Enter your Password',
                           labelText: 'Password',
+                          prefixIcon: Icon(
+                            Icons.lock,
+                            color: Theme.of(context).primaryColorDark,
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              isPasswordVisible == false
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Theme.of(context).primaryColorDark,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                isPasswordVisible = !isPasswordVisible;
+                              });
+                            },
+                          ),
                         ),
                         const SizedBox(
                           height: 20,
                         ),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Map<String, dynamic> data = {
+                              'mobile': mobileC.text,
+                              'password': passwordC.text,
+                            };
+                            print(data);
+                          },
                           style: ElevatedButton.styleFrom(
                             fixedSize: const Size(200, 50),
                             backgroundColor:
