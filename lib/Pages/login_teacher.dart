@@ -37,7 +37,7 @@ class _LoginTeacherState extends State<LoginTeacher> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 151, 16, 255),
+      backgroundColor: const Color.fromARGB(255, 12, 0, 179),
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Stack(children: <Widget>[
@@ -60,16 +60,31 @@ class _LoginTeacherState extends State<LoginTeacher> {
             ),
           ),
           Positioned(
-            top: 70,
+            top: 65,
             left: 10,
             child: InkWell(
               onTap: () {
                 Navigator.pop(context);
               },
-              child: const Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-                size: 30,
+              child: Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 12, 0, 179),
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black,
+                      blurRadius: 3,
+                      offset: Offset(1, 1),
+                    ),
+                  ],
+                ),
+                child: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                  size: 30,
+                ),
               ),
             ),
           ),
@@ -88,10 +103,9 @@ class _LoginTeacherState extends State<LoginTeacher> {
                       children: [
                         const Text("Teacher Login",
                             style: TextStyle(
-                              fontSize: 30,
-                              color: Color.fromARGB(255, 151, 16, 255),
-                              fontWeight: FontWeight.bold,
-                            )),
+                                fontSize: 30,
+                                color: Color.fromARGB(255, 12, 0, 179),
+                                fontWeight: FontWeight.bold)),
                         const SizedBox(
                           height: 100,
                         ),
@@ -164,7 +178,7 @@ class _LoginTeacherState extends State<LoginTeacher> {
                           style: ElevatedButton.styleFrom(
                             fixedSize: const Size(200, 50),
                             backgroundColor:
-                                const Color.fromARGB(255, 151, 16, 255),
+                                const Color.fromARGB(255, 12, 0, 179),
                             foregroundColor: Colors.white,
                             shape: const RoundedRectangleBorder(
                               borderRadius:
@@ -196,7 +210,7 @@ class _LoginTeacherState extends State<LoginTeacher> {
                   'By continuing, you agree to our Terms of Service and Privacy Policy',
                   style: TextStyle(
                     fontSize: 15,
-                    color: Color.fromARGB(145, 16, 255, 171),
+                    color: Color.fromARGB(255, 12, 0, 179),
                     fontWeight: FontWeight.bold,
                   ),
                 ),

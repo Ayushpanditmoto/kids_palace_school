@@ -36,10 +36,25 @@ class WelcomeSecondScreen extends StatelessWidget {
               onTap: () {
                 Navigator.pop(context);
               },
-              child: const Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-                size: 30,
+              child: Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: const BorderRadius.all(Radius.circular(50)),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black,
+                      blurRadius: 3,
+                      offset: Offset(1, 1),
+                    ),
+                  ],
+                ),
+                child: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                  size: 30,
+                ),
               ),
             ),
           ),

@@ -92,10 +92,25 @@ class _OnlineAdmissionState extends State<OnlineAdmission> {
               onTap: () {
                 Navigator.pop(context);
               },
-              child: const Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-                size: 30,
+              child: Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.circular(50),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black,
+                      blurRadius: 5,
+                      offset: Offset(1, 1),
+                    ),
+                  ],
+                ),
+                child: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                  size: 30,
+                ),
               ),
             ),
           ),
@@ -119,6 +134,9 @@ class _OnlineAdmissionState extends State<OnlineAdmission> {
                               color: Color.fromARGB(255, 16, 255, 171),
                               fontWeight: FontWeight.bold,
                             )),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         TextEnterArea(
                           controller: nameC,
                           textInputAction: TextInputAction.next,
