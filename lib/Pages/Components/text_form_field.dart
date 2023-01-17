@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TextEnterArea extends StatelessWidget {
-  final String hintText;
-  final String labelText;
+  final String? hintText;
+  final String? labelText;
   final TextEditingController controller;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
@@ -11,11 +11,13 @@ class TextEnterArea extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool obscureText;
   final String? Function(String?)? validator;
+  final FocusNode? focusNode;
+  final TextInputAction? textInputAction;
 
   const TextEnterArea(
       {super.key,
-      required this.hintText,
-      required this.labelText,
+      this.hintText,
+      this.labelText,
       required this.controller,
       this.prefixIcon,
       this.onChanged,
@@ -23,6 +25,8 @@ class TextEnterArea extends StatelessWidget {
       this.keyboardType,
       this.onFiledSubmitted,
       this.validator,
+      this.focusNode,
+      this.textInputAction,
       this.suffixIcon});
 
   @override
@@ -30,17 +34,27 @@ class TextEnterArea extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: 60,
+        constraints: const BoxConstraints(
+          minHeight: 55,
+          maxHeight: 65,
+        ),
         width: MediaQuery.of(context).size.width - 20,
         decoration: BoxDecoration(
           color: const Color.fromARGB(87, 134, 134, 134),
           borderRadius: BorderRadius.circular(10),
         ),
         child: TextFormField(
+          //error text in center
+          textAlignVertical: TextAlignVertical.center,
+
           onChanged: onChanged,
+          focusNode: focusNode, //it is used to focus on the text field
+          textInputAction:
+              textInputAction, //it is used to change the keyboard action button
           keyboardType: keyboardType,
           obscureText: obscureText,
           validator: validator,
+
           onFieldSubmitted: onFiledSubmitted,
           controller: controller,
           decoration: InputDecoration(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kids/Pages/Components/text_form_field.dart';
+import 'package:intl/intl.dart';
 
 class OnlineAdmission extends StatefulWidget {
   const OnlineAdmission({super.key});
@@ -16,6 +17,48 @@ class _OnlineAdmissionState extends State<OnlineAdmission> {
   TextEditingController dobC = TextEditingController();
   TextEditingController genderC = TextEditingController();
   TextEditingController guardianC = TextEditingController();
+
+  //focusnode is used to move to next textfield
+  //when user press enter
+  //and also to move to previous textfield
+  FocusNode nameF = FocusNode();
+  FocusNode emailF = FocusNode();
+  FocusNode mobileF = FocusNode();
+  FocusNode addressF = FocusNode();
+  FocusNode dobF = FocusNode();
+  FocusNode genderF = FocusNode();
+  FocusNode guardianF = FocusNode();
+  final formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    super.initState();
+    nameC = TextEditingController();
+    emailC = TextEditingController();
+    mobileC = TextEditingController();
+    addressC = TextEditingController();
+    dobC = TextEditingController();
+    genderC = TextEditingController();
+    guardianC = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    nameC.dispose();
+    emailC.dispose();
+    mobileC.dispose();
+    addressC.dispose();
+    dobC.dispose();
+    genderC.dispose();
+    guardianC.dispose();
+    super.dispose();
+  }
+
+  void submit(Map data) async {
+    if (formKey.currentState!.validate()) {
+      print(data);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,6 +109,7 @@ class _OnlineAdmissionState extends State<OnlineAdmission> {
                   child: Column(
                 children: <Widget>[
                   Form(
+                    key: formKey,
                     child: Column(
                       children: [
                         const Text("Online Admission",
@@ -76,39 +120,138 @@ class _OnlineAdmissionState extends State<OnlineAdmission> {
                             )),
                         TextEnterArea(
                           controller: nameC,
-                          hintText: 'Enter your Full Name',
-                          labelText: 'Name',
-                          prefixIcon: const Icon(Icons.person),
+                          textInputAction: TextInputAction.next,
+                          focusNode: nameF,
+                          hintText: 'Enter Name',
+                          prefixIcon: Icon(
+                            Icons.person,
+                            color: Theme.of(context).primaryColorDark,
+                          ),
+                          validator: (v) {
+                            if (v!.isEmpty) {
+                              return "Please Enter Name";
+                            }
+                            return null;
+                          },
                         ),
                         TextEnterArea(
                           controller: emailC,
-                          hintText: 'Enter your email',
-                          labelText: 'Email',
-                          prefixIcon: const Icon(Icons.email),
+                          textInputAction: TextInputAction.next,
+                          focusNode: emailF,
+                          hintText: 'Enter Email',
+                          prefixIcon: Icon(
+                            Icons.email,
+                            color: Theme.of(context).primaryColorDark,
+                          ),
+                          validator: (p0) {
+                            if (p0!.isEmpty) {
+                              return "Please Enter Email";
+                            } else if (!p0.contains('@')) {
+                              return "Please Enter Valid Email";
+                            } else {
+                              return null;
+                            }
+                          },
                         ),
                         TextEnterArea(
                           controller: guardianC,
-                          hintText: 'Enter your Guardian Name',
-                          labelText: 'Guardian Name',
-                          prefixIcon: const Icon(Icons.person),
+                          focusNode: guardianF,
+                          textInputAction: TextInputAction.next,
+                          hintText: 'Enter Guardian Name',
+                          prefixIcon: Icon(
+                            Icons.person,
+                            color: Theme.of(context).primaryColorDark,
+                          ),
+                          validator: (p0) {
+                            if (p0!.isEmpty) {
+                              return "Please Enter Guardian Name";
+                            }
+                            return null;
+                          },
                         ),
                         TextEnterArea(
                           controller: mobileC,
-                          hintText: 'Enter your Phone Number',
-                          labelText: 'Phone',
-                          prefixIcon: const Icon(Icons.phone),
+                          focusNode: mobileF,
+                          keyboardType: TextInputType.number,
+                          textInputAction: TextInputAction.next,
+                          hintText: 'Enter Mobile Number',
+                          prefixIcon: Icon(
+                            Icons.phone,
+                            color: Theme.of(context).primaryColorDark,
+                          ),
+                          validator: (p0) {
+                            if (p0!.isEmpty) {
+                              return "Please Enter Mobile Number";
+                            } else if (p0.length != 10) {
+                              return "Please Enter Valid Mobile Number";
+                            } else {
+                              return null;
+                            }
+                          },
                         ),
                         TextEnterArea(
                           controller: addressC,
-                          hintText: 'Enter your Address',
-                          labelText: 'Address',
-                          prefixIcon: const Icon(Icons.location_on),
+                          focusNode: addressF,
+                          textInputAction: TextInputAction.next,
+                          hintText: 'Enter Address',
+                          prefixIcon: Icon(
+                            Icons.location_on,
+                            color: Theme.of(context).primaryColorDark,
+                          ),
+                          validator: (p0) {
+                            if (p0!.isEmpty) {
+                              return "Please Enter Address";
+                            }
+                            return null;
+                          },
                         ),
-                        TextEnterArea(
-                          controller: dobC,
-                          hintText: 'Enter your Date of Birth',
-                          labelText: 'Date of Birth',
-                          prefixIcon: const Icon(Icons.calendar_today),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 60,
+                            width: MediaQuery.of(context).size.width - 20,
+                            decoration: BoxDecoration(
+                              color: const Color.fromARGB(87, 134, 134, 134),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: TextFormField(
+                              readOnly: true,
+                              controller: dobC,
+                              focusNode: dobF,
+                              textInputAction: TextInputAction.next,
+                              decoration: InputDecoration(
+                                hintText: 'Date of Birth',
+                                prefixIcon: Icon(
+                                  Icons.calendar_today,
+                                  color: Theme.of(context).primaryColorDark,
+                                ),
+                                border: InputBorder.none,
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Choose Date';
+                                }
+                                return null;
+                              },
+                              onTap: () async {
+                                FocusScope.of(context)
+                                    .requestFocus(FocusNode());
+                                final DateTime? picked = await showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(1900),
+                                  lastDate: DateTime.now(),
+                                  errorFormatText: 'Enter valid date',
+                                );
+                                if (picked != null) {
+                                  setState(() {
+                                    dobC.text =
+                                        DateFormat('dd-MM-yyyy').format(picked);
+                                  });
+                                }
+                              },
+                            ),
+                          ),
                         ),
                         const SizedBox(
                           height: 20,
@@ -123,7 +266,7 @@ class _OnlineAdmissionState extends State<OnlineAdmission> {
                               'address': addressC.text,
                               'dob': dobC.text,
                             };
-                            print(data);
+                            submit(data);
                           },
                           style: ElevatedButton.styleFrom(
                             fixedSize: const Size(200, 50),

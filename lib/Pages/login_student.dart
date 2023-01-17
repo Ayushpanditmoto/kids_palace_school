@@ -12,12 +12,26 @@ class _LoginStudentState extends State<LoginStudent> {
   TextEditingController mobileC = TextEditingController();
   TextEditingController passwordC = TextEditingController();
   bool isPasswordVisible = true;
+  final formKey = GlobalKey<FormState>();
+
+  void submit(Map data) async {
+    if (formKey.currentState!.validate()) {
+      print(data);
+    }
+  }
 
   @override
   void initState() {
     mobileC = TextEditingController();
     passwordC = TextEditingController();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    mobileC.dispose();
+    passwordC.dispose();
+    super.dispose();
   }
 
   @override
@@ -69,6 +83,7 @@ class _LoginStudentState extends State<LoginStudent> {
                   child: Column(
                 children: <Widget>[
                   Form(
+                    key: formKey,
                     child: Column(
                       children: [
                         const Text("Student Login",
@@ -82,9 +97,18 @@ class _LoginStudentState extends State<LoginStudent> {
                         ),
                         TextEnterArea(
                           controller: mobileC,
+                          textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.number,
                           hintText: 'Enter your Mobile Number',
-                          labelText: 'Mobile Number',
+                          validator: (p0) {
+                            if (p0!.isEmpty) {
+                              return 'Please enter your Mobile Number';
+                            }
+                            if (p0.length != 10) {
+                              return 'Please enter a valid Mobile Number';
+                            }
+                            return null;
+                          },
                           prefixIcon: Icon(
                             Icons.phone,
                             color: Theme.of(context).primaryColorDark,
@@ -95,10 +119,19 @@ class _LoginStudentState extends State<LoginStudent> {
                         ),
                         TextEnterArea(
                           controller: passwordC,
+                          textInputAction: TextInputAction.next,
                           obscureText:
                               isPasswordVisible == false ? true : false,
                           hintText: 'Enter your Password',
-                          labelText: 'Password',
+                          validator: (p0) {
+                            if (p0!.isEmpty) {
+                              return 'Please enter your Password';
+                            }
+                            if (p0.length < 6) {
+                              return 'Password must be at least 6 characters';
+                            }
+                            return null;
+                          },
                           prefixIcon: Icon(
                             Icons.lock,
                             color: Theme.of(context).primaryColorDark,
@@ -126,7 +159,7 @@ class _LoginStudentState extends State<LoginStudent> {
                               'mobile': mobileC.text,
                               'password': passwordC.text,
                             };
-                            print(data);
+                            submit(data);
                           },
                           style: ElevatedButton.styleFrom(
                             fixedSize: const Size(200, 50),

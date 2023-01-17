@@ -6,7 +6,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 29, 211, 168),
+      backgroundColor: const Color.fromARGB(255, 41, 204, 155),
       body: Stack(children: <Widget>[
         Container(
           height: MediaQuery.of(context).size.height - 100,
@@ -120,7 +120,7 @@ class WelcomeScreen extends StatelessWidget {
                 'By continuing, you agree to our Terms of Service and Privacy Policy',
                 style: TextStyle(
                   fontSize: 15,
-                  color: Color.fromARGB(145, 16, 255, 171),
+                  color: Color.fromARGB(145, 0, 230, 150),
                   fontWeight: FontWeight.bold,
                 ),
               ),

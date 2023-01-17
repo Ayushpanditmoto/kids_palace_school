@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kids/app/Provider/app.providers.dart';
 import 'package:kids/app/Routes/app.route.dart';
 import 'package:provider/provider.dart';
-
 import 'Core/Notifiers/theme_notifier.dart';
 
 void main() {
