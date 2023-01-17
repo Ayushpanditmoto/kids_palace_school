@@ -60,7 +60,7 @@ class _LoginTeacherState extends State<LoginTeacher> {
             ),
           ),
           Positioned(
-            top: 50,
+            top: 70,
             left: 10,
             child: InkWell(
               onTap: () {
@@ -74,7 +74,7 @@ class _LoginTeacherState extends State<LoginTeacher> {
             ),
           ),
           Positioned(
-            top: 50,
+            top: 70,
             left: 0,
             child: SizedBox(
               height: MediaQuery.of(context).size.height - 100,
@@ -93,7 +93,7 @@ class _LoginTeacherState extends State<LoginTeacher> {
                               fontWeight: FontWeight.bold,
                             )),
                         const SizedBox(
-                          height: 20,
+                          height: 100,
                         ),
                         TextEnterArea(
                           controller: mobileC,

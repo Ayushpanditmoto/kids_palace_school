@@ -74,7 +74,7 @@ class _LoginStudentState extends State<LoginStudent> {
             ),
           ),
           Positioned(
-            top: 50,
+            top: 100,
             left: 0,
             child: SizedBox(
               height: MediaQuery.of(context).size.height - 100,
@@ -93,7 +93,7 @@ class _LoginStudentState extends State<LoginStudent> {
                               fontWeight: FontWeight.bold,
                             )),
                         const SizedBox(
-                          height: 20,
+                          height: 100,
                         ),
                         TextEnterArea(
                           controller: mobileC,

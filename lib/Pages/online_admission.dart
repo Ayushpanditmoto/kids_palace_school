@@ -109,6 +109,7 @@ class _OnlineAdmissionState extends State<OnlineAdmission> {
                   child: Column(
                 children: <Widget>[
                   Form(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     key: formKey,
                     child: Column(
                       children: [
@@ -193,6 +194,7 @@ class _OnlineAdmissionState extends State<OnlineAdmission> {
                           controller: addressC,
                           focusNode: addressF,
                           textInputAction: TextInputAction.next,
+                          onChanged: (p0) {},
                           hintText: 'Enter Address',
                           prefixIcon: Icon(
                             Icons.location_on,
