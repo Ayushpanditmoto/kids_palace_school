@@ -4,9 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kids/app/Provider/app.providers.dart';
 import 'package:kids/app/Routes/app.route.dart';
 import 'package:provider/provider.dart';
-import 'Core/Notifiers/theme_notifier.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import '../app/credentials/supabase.credentials.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(const <DeviceOrientation>[
     DeviceOrientation.portraitUp,
@@ -18,6 +19,10 @@ void main() {
     systemNavigationBarColor: Color.fromARGB(255, 0, 0, 0),
     systemNavigationBarIconBrightness: Brightness.light,
   ));
+  await Supabase.initialize(
+    url: SupaBaseCred.apiUrl,
+    anonKey: SupaBaseCred.apiKey,
+  );
   runApp(const MyApp());
 }
 
@@ -38,11 +43,10 @@ class MyApp extends StatelessWidget {
       providers: AppProviders.providers,
       child: Builder(
         builder: (BuildContext context) {
-          final themeProvider = Provider.of<ThemeProvider>(context);
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Kids App',
-            themeMode: themeProvider.themeMode,
+
             theme: ThemeData(
               fontFamily: GoogleFonts.poppins().fontFamily,
               primaryColor: const Color(0xFF202328),
