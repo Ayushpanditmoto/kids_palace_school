@@ -53,11 +53,12 @@ class MyApp extends StatelessWidget {
               backgroundColor: const Color.fromARGB(255, 30, 30, 30),
               brightness: Brightness.dark,
               appBarTheme: const AppBarTheme(
-                color: Color.fromARGB(255, 16, 255, 171),
+                color: Color.fromARGB(166, 0, 218, 142),
               ),
             ),
             // home: const WelcomeScreen(),
             initialRoute: RoutePaths.welcomeScreen,
+            // initialRoute: RoutePaths.studentDashboard,
             onGenerateRoute: RoutePaths.generateRoute,
           );
         },

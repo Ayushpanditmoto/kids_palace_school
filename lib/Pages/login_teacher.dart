@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kids/Pages/Components/text_form_field.dart';
+import 'package:kids/Pages/teacher_dashboard.dart';
+import 'package:kids/app/Routes/app.route.dart';
 
 class LoginTeacher extends StatefulWidget {
   const LoginTeacher({super.key});
@@ -193,6 +195,15 @@ class _LoginTeacherState extends State<LoginTeacher> {
                             ),
                           ),
                         ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, RoutePaths.teacherDashboard);
+                            },
+                            child: const Text("Teacher Dashboard"))
                       ],
                     ),
                   ),

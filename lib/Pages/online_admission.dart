@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kids/Pages/Components/text_form_field.dart';
 import 'package:intl/intl.dart';
+import 'package:kids/app/credentials/database.service.dart';
+import '../Model/online_admission_model.dart';
+import '../reuseable/snackbar.dart';
 
 class OnlineAdmission extends StatefulWidget {
   const OnlineAdmission({super.key});
@@ -10,6 +13,8 @@ class OnlineAdmission extends StatefulWidget {
 }
 
 class _OnlineAdmissionState extends State<OnlineAdmission> {
+  bool isLoading = false;
+
   TextEditingController nameC = TextEditingController();
   TextEditingController emailC = TextEditingController();
   TextEditingController mobileC = TextEditingController();
@@ -53,9 +58,35 @@ class _OnlineAdmissionState extends State<OnlineAdmission> {
     super.dispose();
   }
 
-  void submit(Map data) async {
-    if (formKey.currentState!.validate()) {
-      print(data);
+  void submit(Map<String, dynamic> data) async {
+    try {
+      if (formKey.currentState!.validate()) {
+        setState(() {
+          isLoading = true;
+        });
+        Map<String, dynamic> data = {
+          "Name": nameC.text,
+          "Email": emailC.text,
+          "Guardian": guardianC.text,
+          "Mobile": mobileC.text,
+          "Address": addressC.text,
+          "Date": dobC.text,
+        };
+        final result = Admission.fromJson(data);
+        await DatabaseService().postData("Online Admission", data);
+        setState(() {
+          isLoading = false;
+        });
+        // ignore: use_build_context_synchronously
+        snackBarWidget(context, "Data Submitted Successfully",
+            backgroundColor: const Color.fromARGB(255, 0, 208, 121));
+      }
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+      // ignore: use_build_context_synchronously
+      snackBarWidget(context, "Something went wrong");
     }
   }
 
@@ -266,7 +297,7 @@ class _OnlineAdmissionState extends State<OnlineAdmission> {
                                 if (picked != null) {
                                   setState(() {
                                     dobC.text =
-                                        DateFormat('dd-MM-yyyy').format(picked);
+                                        DateFormat('yyyy-MM-dd').format(picked);
                                   });
                                 }
                               },
@@ -298,13 +329,17 @@ class _OnlineAdmissionState extends State<OnlineAdmission> {
                                   BorderRadius.all(Radius.circular(10)),
                             ),
                           ),
-                          child: const Text(
-                            'Apply Now',
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                          child: isLoading
+                              ? const CircularProgressIndicator(
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                )
+                              : const Text(
+                                  'Submit',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                         ),
                       ],
                     ),

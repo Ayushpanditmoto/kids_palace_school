@@ -8,6 +8,9 @@ import 'package:kids/Pages/teacher_dashboard.dart';
 import 'package:kids/Pages/welcome_screen.dart';
 import 'package:kids/Pages/welcome_second_screen.dart';
 
+import '../../Pages/student_fees.dart';
+import '../../Pages/student_notice.dart';
+
 class RoutePaths {
   static const String welcomeScreen = '/';
   static const String home = '/home';
@@ -17,6 +20,8 @@ class RoutePaths {
   static const String onlineAdmission = '/online_admission';
   static const String teacherDashboard = '/teacher_dashboard';
   static const String studentDashboard = '/student_dashboard';
+  static const String studentNotice = '/student_notice';
+  static const String studentFees = '/student_fees';
 
   // static final routes = {
   //   welcomeScreen: (BuildContext context) => const WelcomeScreen(),
@@ -47,7 +52,10 @@ class RoutePaths {
         return MaterialPageRoute(builder: (_) => const TeacherDashboard());
       case RoutePaths.studentDashboard:
         return MaterialPageRoute(builder: (_) => const StudentDashboard());
-
+      case RoutePaths.studentNotice:
+        return MaterialPageRoute(builder: (_) => const StudentNotice());
+      case RoutePaths.studentFees:
+        return MaterialPageRoute(builder: (_) => const StudentFees());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

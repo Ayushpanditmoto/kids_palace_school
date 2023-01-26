@@ -73,8 +73,3 @@ final List<Teacher> teachers = [
     id: 'id',
   ),
 ];
-
-void main() {
-  Teacher teacher = teachers[0];
-  print(teachers[0].toJson().runtimeType);
-}

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kids/Core/Services/supabase.service.dart';
 import 'package:kids/Pages/Components/text_form_field.dart';
+import 'package:kids/app/Routes/app.route.dart';
 
 class LoginStudent extends StatefulWidget {
   const LoginStudent({super.key});
@@ -9,27 +11,21 @@ class LoginStudent extends StatefulWidget {
 }
 
 class _LoginStudentState extends State<LoginStudent> {
-  TextEditingController mobileC = TextEditingController();
+  TextEditingController emailC = TextEditingController();
   TextEditingController passwordC = TextEditingController();
   bool isPasswordVisible = true;
   final formKey = GlobalKey<FormState>();
 
-  void submit(Map data) async {
-    if (formKey.currentState!.validate()) {
-      print(data);
-    }
-  }
-
   @override
   void initState() {
-    mobileC = TextEditingController();
+    emailC = TextEditingController();
     passwordC = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
-    mobileC.dispose();
+    emailC.dispose();
     passwordC.dispose();
     super.dispose();
   }
@@ -111,16 +107,16 @@ class _LoginStudentState extends State<LoginStudent> {
                           height: 100,
                         ),
                         TextEnterArea(
-                          controller: mobileC,
+                          controller: emailC,
                           textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.number,
-                          hintText: 'Enter your Mobile Number',
+                          keyboardType: TextInputType.text,
+                          hintText: 'Enter your email Address',
                           validator: (p0) {
                             if (p0!.isEmpty) {
-                              return 'Please enter your Mobile Number';
+                              return 'Please enter your email';
                             }
-                            if (p0.length != 10) {
-                              return 'Please enter a valid Mobile Number';
+                            if (!p0.contains('@')) {
+                              return 'Please enter a valid email';
                             }
                             return null;
                           },
@@ -169,12 +165,10 @@ class _LoginStudentState extends State<LoginStudent> {
                           height: 20,
                         ),
                         ElevatedButton(
-                          onPressed: () async {
-                            Map<String, dynamic> data = {
-                              'mobile': mobileC.text,
-                              'password': passwordC.text,
-                            };
-                            submit(data);
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              AuthService().signIn(emailC.text, passwordC.text);
+                            }
                           },
                           style: ElevatedButton.styleFrom(
                             fixedSize: const Size(200, 50),
@@ -194,6 +188,12 @@ class _LoginStudentState extends State<LoginStudent> {
                             ),
                           ),
                         ),
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, RoutePaths.studentDashboard);
+                            },
+                            child: const Text("Login Dashboard"))
                       ],
                     ),
                   ),

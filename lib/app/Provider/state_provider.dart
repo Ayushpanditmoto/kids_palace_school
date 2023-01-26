@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class State with ChangeNotifier {
+class HandleState with ChangeNotifier {
   bool loading = false;
   bool error = false;
   String errorMessage = '';
