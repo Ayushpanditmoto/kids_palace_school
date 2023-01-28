@@ -14,9 +14,12 @@ dependencies:
   flutter_svg: ^1.1.6
   font_awesome_flutter: ^10.3.0
   google_fonts: ^3.0.1
+  hive_flutter: ^1.1.0
   intl: ^0.17.0
+  path_provider: ^2.0.12
   provider: ^6.0.5
   supabase_flutter: ^1.2.2
+  url_launcher: ^6.1.4
 
 dev_dependencies:
   flutter_lints: ^2.0.0
