@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:kids/Pages/Components/bottom_navigation.dart';
 import 'package:kids/app/Routes/app.route.dart';
+import 'package:provider/provider.dart';
+
+import '../app/Provider/auth.provider.dart';
 
 class StudentDashboard extends StatelessWidget {
   const StudentDashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<Auth>(context, listen: false);
     return Scaffold(
         appBar: AppBar(
           title: const Text('Student Dashboard'),
@@ -14,7 +18,9 @@ class StudentDashboard extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: (() {
-                  Navigator.pushNamed(context, RoutePaths.welcomeScreen);
+                  auth.logout();
+                  Navigator.pushReplacementNamed(
+                      context, RoutePaths.welcomeScreen);
                 }),
                 icon: const Icon(Icons.logout))
           ],

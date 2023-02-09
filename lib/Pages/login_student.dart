@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kids/Core/Services/supabase.service.dart';
+import 'package:provider/provider.dart';
+import '../app/Provider/auth.provider.dart';
 import 'package:kids/Pages/Components/text_form_field.dart';
 import 'package:kids/app/Routes/app.route.dart';
 
@@ -32,6 +33,7 @@ class _LoginStudentState extends State<LoginStudent> {
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<Auth>(context);
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 40, 255, 205),
       resizeToAvoidBottomInset: false,
@@ -167,7 +169,9 @@ class _LoginStudentState extends State<LoginStudent> {
                         ElevatedButton(
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              AuthService().signIn(emailC.text, passwordC.text);
+                              auth.signup(emailC.text, passwordC.text);
+
+                              // AuthService().signIn(emailC.text, passwordC.text);
                             }
                           },
                           style: ElevatedButton.styleFrom(

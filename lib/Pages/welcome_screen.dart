@@ -12,6 +12,14 @@ class WelcomeScreen extends StatelessWidget {
           height: MediaQuery.of(context).size.height - 100,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color.fromARGB(255, 23, 23, 23),
+                Color.fromARGB(255, 30, 30, 30),
+              ],
+            ),
             boxShadow: const [
               BoxShadow(
                 color: Colors.black,

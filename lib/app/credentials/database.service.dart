@@ -4,7 +4,7 @@ class DatabaseService {
   //post data to database
   Future<void> postData(String table, Map<String, dynamic> data) async {
     try {
-      final response = await Supabase.instance.client
+      await Supabase.instance.client
           .from(table)
           .insert(data)
           .then((value) => print(value.data));

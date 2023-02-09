@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kids/Pages/Components/text_form_field.dart';
-import 'package:kids/Pages/teacher_dashboard.dart';
 import 'package:kids/app/Routes/app.route.dart';
+import 'package:provider/provider.dart';
+import '../app/Provider/auth.provider.dart';
 
 class LoginTeacher extends StatefulWidget {
   const LoginTeacher({super.key});
@@ -11,27 +12,29 @@ class LoginTeacher extends StatefulWidget {
 }
 
 class _LoginTeacherState extends State<LoginTeacher> {
-  TextEditingController mobileC = TextEditingController();
+  TextEditingController emailC = TextEditingController();
   TextEditingController passwordC = TextEditingController();
   bool isPasswordVisible = true;
   final formKey = GlobalKey<FormState>();
 
-  void submit(Map data) async {
+  void submit(ctx, Map data) async {
     if (formKey.currentState!.validate()) {
-      print(data);
+      await Provider.of<Auth>(ctx, listen: false)
+          .login(emailC.text, passwordC.text);
+      Navigator.pushNamed(ctx, RoutePaths.teacherDashboard);
     }
   }
 
   @override
   void initState() {
-    mobileC = TextEditingController();
+    emailC = TextEditingController();
     passwordC = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
-    mobileC.dispose();
+    emailC.dispose();
     passwordC.dispose();
     super.dispose();
   }
@@ -112,21 +115,21 @@ class _LoginTeacherState extends State<LoginTeacher> {
                           height: 100,
                         ),
                         TextEnterArea(
-                          controller: mobileC,
-                          keyboardType: TextInputType.number,
+                          controller: emailC,
+                          keyboardType: TextInputType.emailAddress,
                           textInputAction: TextInputAction.next,
-                          hintText: 'Enter your Mobile Number',
+                          hintText: 'Enter your Email',
                           validator: (p0) {
                             if (p0!.isEmpty) {
-                              return 'Please enter your Mobile Number';
+                              return 'Please enter your Email';
                             }
-                            if (p0.length != 10) {
-                              return 'Please enter a valid Mobile Number';
+                            if (!p0.contains('@')) {
+                              return 'Please enter a valid Email';
                             }
                             return null;
                           },
                           prefixIcon: Icon(
-                            Icons.phone,
+                            Icons.email,
                             color: Theme.of(context).primaryColorDark,
                           ),
                         ),
@@ -172,10 +175,10 @@ class _LoginTeacherState extends State<LoginTeacher> {
                         ElevatedButton(
                           onPressed: () {
                             Map<String, dynamic> data = {
-                              'mobile': mobileC.text,
+                              'email': emailC.text,
                               'password': passwordC.text,
                             };
-                            submit(data);
+                            submit(context, data);
                           },
                           style: ElevatedButton.styleFrom(
                             fixedSize: const Size(200, 50),
