@@ -10,11 +10,14 @@
 
 ## Screenshots
 
-![Image](./mockups/ss1.png)
-![Image](./mockups/ss2.png)
-![Image](mockups/ss3.png)
-![Image](mockups/ss4.png)
-![Image](mockups/ss5.png)
+![ss1](https://user-images.githubusercontent.com/31253617/220288584-c5214584-6e62-4f20-ad7f-c32ee600195b.png)
+![ss2](https://user-images.githubusercontent.com/31253617/220289327-15f0b56b-f592-4247-a0d9-19f053b58926.png)
+![ss3](https://user-images.githubusercontent.com/31253617/220289508-d2babbd2-09b8-476b-9cd7-68aa321ec1cd.png)
+
+
+
+
+
 
 #
 
