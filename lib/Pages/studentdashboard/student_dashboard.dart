@@ -3,7 +3,7 @@ import 'package:kids/Pages/Components/bottom_navigation.dart';
 import 'package:kids/app/Routes/app.route.dart';
 import 'package:provider/provider.dart';
 
-import '../app/Provider/auth.provider.dart';
+import '../../app/Provider/auth.provider.dart';
 
 class StudentDashboard extends StatelessWidget {
   const StudentDashboard({super.key});

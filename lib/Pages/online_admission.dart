@@ -1,8 +1,9 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:kids/Pages/Components/text_form_field.dart';
 import 'package:intl/intl.dart';
 import 'package:kids/app/credentials/database.service.dart';
-import '../Model/online_admission_model.dart';
 import '../reuseable/snackbar.dart';
 
 class OnlineAdmission extends StatefulWidget {
@@ -72,7 +73,7 @@ class _OnlineAdmissionState extends State<OnlineAdmission> {
           "Address": addressC.text,
           "Date": dobC.text,
         };
-        final result = Admission.fromJson(data);
+        // final result = Admission.fromJson(data);
         await DatabaseService().postData("Online Admission", data);
         setState(() {
           isLoading = false;

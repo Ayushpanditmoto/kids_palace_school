@@ -3,13 +3,13 @@ import 'package:kids/Pages/Home.dart';
 import 'package:kids/Pages/login_student.dart';
 import 'package:kids/Pages/login_teacher.dart';
 import 'package:kids/Pages/online_admission.dart';
-import 'package:kids/Pages/student_dashboard.dart';
+import 'package:kids/Pages/studentdashboard/student_dashboard.dart';
 import 'package:kids/Pages/teacher_dashboard.dart';
 import 'package:kids/Pages/welcome_screen.dart';
 import 'package:kids/Pages/welcome_second_screen.dart';
 
-import '../../Pages/student_fees.dart';
-import '../../Pages/student_notice.dart';
+import '../../Pages/studentdashboard/student_fees.dart';
+import '../../Pages/studentdashboard/student_notice.dart';
 
 class RoutePaths {
   static const String welcomeScreen = '/';
@@ -23,16 +23,16 @@ class RoutePaths {
   static const String studentNotice = '/student_notice';
   static const String studentFees = '/student_fees';
 
-  // static final routes = {
-  //   welcomeScreen: (BuildContext context) => const WelcomeScreen(),
-  //   home: (BuildContext context) => const Home(),
-  //   welcomeSecondScreen: (BuildContext context) => const WelcomeSecondScreen(),
-  //   loginStudent: (BuildContext context) => const LoginStudent(),
-  //   loginTeacher: (BuildContext context) => const LoginTeacher(),
-  //   onlineAdmission: (BuildContext context) => const OnlineAdmission(),
-  //   teacherDashboard: (BuildContext context) => const TeacherDashboard(),
-  //   studentDashboard: (BuildContext context) => const StudentDashboard(),
-  // };
+  static final routes = {
+    welcomeScreen: (BuildContext context) => const WelcomeScreen(),
+    home: (BuildContext context) => const Home(),
+    welcomeSecondScreen: (BuildContext context) => const WelcomeSecondScreen(),
+    loginStudent: (BuildContext context) => const LoginStudent(),
+    loginTeacher: (BuildContext context) => const LoginTeacher(),
+    onlineAdmission: (BuildContext context) => const OnlineAdmission(),
+    teacherDashboard: (BuildContext context) => const TeacherDashboard(),
+    studentDashboard: (BuildContext context) => const StudentDashboard(),
+  };
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {

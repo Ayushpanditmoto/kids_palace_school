@@ -12,6 +12,7 @@ class Auth with ChangeNotifier {
   DateTime? _expiryDate;
   String? _userId;
   Timer? _authTimer;
+  bool isTeacher = false;
 
   bool get isAuth {
     return token != null;
@@ -30,18 +31,40 @@ class Auth with ChangeNotifier {
     return _userId;
   }
 
+  bool get isTeacherLogin {
+    final prefs = SharedPreferences.getInstance();
+    prefs.then((value) {
+      isTeacher = value.getBool('isTeacher')!;
+    });
+    return isTeacher;
+  }
+
   Future<void> _authenticate(
     String email,
     String password,
     bool isSignup,
+    bool isTeacher,
   ) async {
     try {
       if (isSignup) {
-        AuthResponse response = await SupaBaseCred.client.auth.signUp(
+        await SupaBaseCred.client.auth.signUp(
           email: email,
           password: password,
         );
-        print(response.session!.user.emailConfirmedAt);
+        Builder(
+          builder: (context) => AlertDialog(
+            title: const Text('Success'),
+            content: const Text('User created successfully'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Okay'),
+              ),
+            ],
+          ),
+        );
       } else {
         AuthResponse response =
             await SupaBaseCred.client.auth.signInWithPassword(
@@ -65,27 +88,33 @@ class Auth with ChangeNotifier {
         });
         prefs.then((value) {
           value.setString('userData', userData);
+          value.setBool('isTeacher', isTeacher);
         });
 
         return Future.value();
       }
     } catch (e) {
-      print(e);
+      rethrow;
     }
   }
 
   Future<void> signup(String email, String password) async {
-    return _authenticate(email, password, true);
+    return _authenticate(email, password, true, isTeacher);
   }
 
-  Future<void> login(String email, String password) async {
-    return _authenticate(email, password, false);
+  Future<void> studentlogin(String email, String password) async {
+    return _authenticate(email, password, false, isTeacher = false);
+  }
+
+  Future<void> teacherlogin(String email, String password) async {
+    return _authenticate(email, password, false, isTeacher = true);
   }
 
   Future<void> logout() async {
     _token = null;
     _userId = null;
     _expiryDate = null;
+    isTeacher = false;
     if (_authTimer != null) {
       _authTimer!.cancel();
       _authTimer = null;
@@ -102,6 +131,7 @@ class Auth with ChangeNotifier {
     }
     final extractedUserData =
         json.decode(prefs.getString('userData')!) as Map<String, dynamic>;
+    final isTeacherLogin = prefs.getBool('isTeacher')!;
     final expiryDate =
         DateTime.parse(extractedUserData['expiryDate'] as String);
 
@@ -111,6 +141,7 @@ class Auth with ChangeNotifier {
     _token = extractedUserData['token'] as String;
     _userId = extractedUserData['userId'] as String;
     _expiryDate = expiryDate;
+    isTeacher = isTeacherLogin;
     notifyListeners();
     return true;
   }

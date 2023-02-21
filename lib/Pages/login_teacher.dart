@@ -20,8 +20,16 @@ class _LoginTeacherState extends State<LoginTeacher> {
   void submit(ctx, Map data) async {
     if (formKey.currentState!.validate()) {
       await Provider.of<Auth>(ctx, listen: false)
-          .login(emailC.text, passwordC.text);
-      Navigator.pushNamed(ctx, RoutePaths.teacherDashboard);
+          .teacherlogin(emailC.text, passwordC.text)
+          .then((value) =>
+              Navigator.pushReplacementNamed(ctx, RoutePaths.teacherDashboard))
+          .catchError((e) {
+        return ScaffoldMessenger.of(ctx).showSnackBar(
+          const SnackBar(
+            content: Text("Email or Password is incorrect"),
+          ),
+        );
+      });
     }
   }
 
@@ -57,6 +65,7 @@ class _LoginTeacherState extends State<LoginTeacher> {
                   offset: Offset(0, 5),
                 ),
               ],
+              // ignore: deprecated_member_use
               color: Theme.of(context).backgroundColor,
               borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(20),

@@ -1,3 +1,6 @@
+// ignore_for_file: deprecated_member_use
+
+import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DatabaseService {
@@ -7,9 +10,9 @@ class DatabaseService {
       await Supabase.instance.client
           .from(table)
           .insert(data)
-          .then((value) => print(value.data));
+          .then((value) => debugPrint(value.data.toString()));
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
   }
 
@@ -20,10 +23,10 @@ class DatabaseService {
           await Supabase.instance.client.from(table).select().then((value) {
         return value.data;
       });
-      print(response);
+      debugPrint(response);
       return response.data;
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
       return [];
     }
   }
@@ -32,13 +35,13 @@ class DatabaseService {
   Future<void> updateData(
       String table, String id, Map<String, dynamic> data) async {
     try {
-      final response = await Supabase.instance.client
+      await Supabase.instance.client
           .from(table)
           .update(data)
           .eq('id', id)
-          .then((value) => print(value.data));
+          .then((value) => debugPrint(value.data));
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
   }
 
@@ -50,9 +53,10 @@ class DatabaseService {
           .delete()
           .eq('id', id)
           .execute();
-      print(response);
+
+      debugPrint(response.data.toString());
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
   }
 }

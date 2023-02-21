@@ -29,11 +29,9 @@ class SupaBase {
     String? email,
     String? password,
   }) async {
-    AuthResponse response = await supabase.auth.signUp(
+    await supabase.auth.signUp(
       email: email,
       password: password!,
     );
-
-    print(response.session!.user.email);
   }
 }

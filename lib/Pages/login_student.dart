@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../app/Provider/auth.provider.dart';
@@ -167,9 +169,17 @@ class _LoginStudentState extends State<LoginStudent> {
                           height: 20,
                         ),
                         ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
                             if (formKey.currentState!.validate()) {
-                              auth.signup(emailC.text, passwordC.text);
+                              await auth
+                                  .studentlogin(emailC.text, passwordC.text)
+                                  .then((value) => Navigator.pushNamed(
+                                      context, RoutePaths.studentDashboard))
+                                  .catchError((e) => ScaffoldMessenger.of(
+                                          context)
+                                      .showSnackBar(const SnackBar(
+                                          content: Text(
+                                              "Invalid Email or Password"))));
 
                               // AuthService().signIn(emailC.text, passwordC.text);
                             }

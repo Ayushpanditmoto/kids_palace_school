@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kids/Pages/login_student.dart';
 import 'package:kids/Pages/login_teacher.dart';
 import 'package:kids/Pages/online_admission.dart';
-import 'package:kids/Pages/student_dashboard.dart';
+import 'package:kids/Pages/studentdashboard/student_dashboard.dart';
 import 'package:kids/Pages/teacher_dashboard.dart';
 import 'package:kids/Pages/welcome_screen.dart';
 import 'package:kids/Pages/welcome_second_screen.dart';

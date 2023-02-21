@@ -1,7 +1,10 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kids/Pages/student_dashboard.dart';
+import 'package:kids/Pages/studentdashboard/student_dashboard.dart';
+import 'package:kids/Pages/teacher_dashboard.dart';
 import 'package:kids/Pages/welcome_screen.dart';
 import 'package:kids/app/Provider/app.providers.dart';
 import 'package:kids/app/Routes/app.route.dart';
@@ -52,7 +55,9 @@ class MyApp extends StatelessWidget {
             ),
           ),
           home: auth.isAuth
-              ? const StudentDashboard()
+              ? auth.isTeacherLogin
+                  ? const TeacherDashboard()
+                  : const StudentDashboard()
               : FutureBuilder(
                   future: auth.tryAutoLogin(),
                   builder: (ctx, authResultSnapshot) =>
@@ -63,8 +68,7 @@ class MyApp extends StatelessWidget {
                                 child: CircularProgressIndicator(),
                               ),
                             )
-                          : const WelcomeScreen(),
-                ),
+                          : const WelcomeScreen()),
 
           initialRoute: RoutePaths.welcomeScreen,
           // initialRoute: RoutePaths.studentDashboard,
